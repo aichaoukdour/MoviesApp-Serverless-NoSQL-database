@@ -1,18 +1,19 @@
-import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
-import Search from './Components/Search';
-import FilmDetail from './Components/FilmDetail'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppNavigation from "./src/navigation";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
-const Stack = createNativeStackNavigator();
 
+const queryClient = new QueryClient();
 export default function App() {
-    return (
-      <NavigationContainer>
-              <Stack.Navigator initialRouteName="Search">
-              <Stack.Screen name="Search" component={Search}/>
-              <Stack.Screen name="FilmDetail" component={FilmDetail}/>
-            </Stack.Navigator>
-    </NavigationContainer>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppNavigation/>
+      </QueryClientProvider>
     );
+  
 }
